@@ -1,16 +1,31 @@
 package me.dio.simulator.ui;
 
 import android.os.Bundle;
+import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.snackbar.Snackbar;
+
+import java.util.List;
+import java.util.Objects;
+
+import me.dio.simulator.R;
+import me.dio.simulator.data.MatchesApi;
 import me.dio.simulator.databinding.ActivityMainBinding;
-import me.dio.simulator.domain.Team;
+import me.dio.simulator.domain.Match;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private MatchesApi matchesApi;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -22,9 +37,19 @@ public class MainActivity extends AppCompatActivity {
         //Teste para mostrar que deu certo o encapsulamento da classe Team
         //Team time = new Team("Teste", 5, "");
 
+        setupHttpClient();
         setupMatchesList();
         setupMatchesRefresh();
         setupFloatingActionButton();
+    }
+
+    private void setupHttpClient() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://androidavid.github.io/criador-partidas-api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        matchesApi = retrofit.create(MatchesApi.class);
     }
 
     private void setupFloatingActionButton() {
@@ -36,6 +61,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupMatchesList() {
-        //TODO Listar partidas consumindo nossa api.
+        matchesApi.getMatches().enqueue(new Callback<List<Match>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<Match>> call, @NonNull Response<List<Match>> response) {
+                if (response.isSuccessful()){
+                    List<Match> matches = response.body();
+                    Log.i("Simulator", "Sucesso, foram encontradas :" + Objects.requireNonNull(matches).size() + " partidas.");
+                } else {
+                    showErrrorMessage();
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<Match>> call, @NonNull Throwable t) {
+                showErrrorMessage();
+            }
+        });
+    }
+
+    private void showErrrorMessage() {
+        Snackbar.make(binding.fabSimulate, R.string.error_api, Snackbar.LENGTH_LONG ).show();
     }
 }
