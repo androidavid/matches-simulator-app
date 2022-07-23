@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "264360193866",
-    "project_id": "simulator-dio-sportheca",
-    "storage_bucket": "simulator-dio-sportheca.appspot.com"
+    "project_number": "481545444299",
+    "project_id": "simulator-ddeploy",
+    "storage_bucket": "simulator-ddeploy.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:264360193866:android:aa1a000833cefd53685bb3",
+        "mobilesdk_app_id": "1:481545444299:android:15782ccdab8b10f7ca744e",
         "android_client_info": {
           "package_name": "me.dio.simulator"
         }
       },
       "oauth_client": [
         {
-          "client_id": "264360193866-kt87ip6uddcp5hdinc855tjfpt71lr7p.apps.googleusercontent.com",
+          "client_id": "481545444299-56g4jsr7fdfnrbpg6bqpboun1eqea323.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCfgFejAT1G3uZnkfKWqvZ02OQe1QejatY"
+          "current_key": "AIzaSyBkp97noQRuqLx-nzerrEaa2vgK5nsrwq0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "264360193866-kt87ip6uddcp5hdinc855tjfpt71lr7p.apps.googleusercontent.com",
+              "client_id": "481545444299-56g4jsr7fdfnrbpg6bqpboun1eqea323.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

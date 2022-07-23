@@ -4,6 +4,7 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
+// parcelable do kotlin para main activity
 @Parcelize
 data class Team(
     @SerializedName("nome")

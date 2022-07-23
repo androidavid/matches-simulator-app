@@ -4,6 +4,7 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
+// parcelable do kotlin para activity de partida
 @Parcelize
 data class Match(
     @SerializedName("descricao")

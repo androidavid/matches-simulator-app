@@ -67,20 +67,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupFloatingActionButton() {
-        binding.fabSimulate.setOnClickListener(view -> {
-            view.animate().rotationBy(360).setDuration(500).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    Random random = new Random();
-                    for (int i = 0; i < matchesAdapter.getItemCount(); i++) {
-                        Match match = matchesAdapter.getMatches().get(i);
-                        match.getHomeTeam().setScore(random.nextInt(match.getHomeTeam().getStars() + 1));
-                        match.getAwayTeam().setScore(random.nextInt(match.getAwayTeam().getStars() + 1));
-                        matchesAdapter.notifyItemChanged(i);
+        binding.fabSimulate.setOnClickListener(view -> view.animate()
+                .rotationBy(360)
+                .setDuration(500)
+                .setListener(new AnimatorListenerAdapter() {
+
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        Random random = new Random();
+                        for (int i = 0; i < matchesAdapter.getItemCount(); i++) {
+                            Match match = matchesAdapter.getMatches().get(i);
+                            match.getHomeTeam().setScore(random.nextInt(match.getHomeTeam().getStars() + 1));
+                            match.getAwayTeam().setScore(random.nextInt(match.getAwayTeam().getStars() + 1));
+                            matchesAdapter.notifyItemChanged(i);
+                        }
                     }
-                }
-            });
-        });
+                })
+        );
     }
 
     private void findMatchesFromApi() {

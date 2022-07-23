@@ -5,6 +5,8 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
+
+// parcelable do java
 public class Place implements Parcelable {
     @SerializedName("nome")
     private String name;

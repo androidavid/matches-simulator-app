@@ -8,7 +8,7 @@ import retrofit2.http.GET;
 
 public interface MatchesApi {
 
-    // end point mapeado.
+    // end point mapeado para o retrofit
     @GET("matches.json")
     Call<List<Match>> getMatches();
 }
